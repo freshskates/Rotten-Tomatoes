@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../controller/axios";
 import { Link } from "react-router-dom";
 
-import "./Row.css";
+import "./styles/Row.css";
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchURL, isLargeRow }) {
@@ -11,7 +11,11 @@ function Row({ title, fetchURL, isLargeRow }) {
   const renderMovies = (movies) => {
     return movies.map((movie) => {
       return (
-        <Link to={`/movie/${movie.id}`}>
+        <Link
+          key={movie.id}
+          to={`/movie/${movie.id}`}
+          style={{ textDecoration: "none" }}
+        >
           <span className="container">
             <img
               key={movie.id}
@@ -21,7 +25,9 @@ function Row({ title, fetchURL, isLargeRow }) {
               }`}
               alt={movie.name}
             />
-            <p>{movie.title}</p>
+            <a className="poster__title" key={movie.title}>
+              {movie.title}
+            </a>
           </span>
         </Link>
       );

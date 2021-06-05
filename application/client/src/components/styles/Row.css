@@ -38,8 +38,16 @@
   margin-right: 10px;
   transition: transform 350ms;
 }
+
+.poster__title,
+.poster__title:visited {
+  text-emphasis: none;
+  text-decoration: none !important;
+  color: white;
+}
 .row__title {
-  padding-top: 3px;
+  padding-top: 7px;
+  text-decoration: none;
   color: white;
 }
 
