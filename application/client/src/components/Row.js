@@ -19,7 +19,7 @@ function Row({ title, fetchURL, isLargeRow }) {
           <span className="container">
             <img
               key={movie.id}
-              className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+              className={`${isLargeRow ? "row__posterLarge" : "row__poster"}  `}
               src={`${baseURL}${
                 isLargeRow ? movie.poster_path : movie.backdrop_path
               }`}

@@ -41,6 +41,8 @@
 
 .poster__title,
 .poster__title:visited {
+  /* margin-top: 10px; */
+  padding-top: 10px;
   text-emphasis: none;
   text-decoration: none !important;
   color: white;
@@ -52,11 +54,17 @@
 }
 
 .row__posterLarge {
+  object-fit: contain;
+  max-height: 100px;
+  margin-right: 10px;
   max-height: 250px;
+  transition: transform 350ms;
 }
-.row__posterLarge {
-  transform: scale(1.09);
+
+.row__posterLarge:hover {
+  transform: scale(1.04);
 }
+
 .row__poster:hover {
   transform: scale(1.08);
 }
