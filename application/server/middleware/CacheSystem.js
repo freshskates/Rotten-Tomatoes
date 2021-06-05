@@ -1,4 +1,6 @@
+require("dotenv").config();
 const redisPool = require("../config/redisPool");
+const print = require("../helper/Print");
 
 const CacheSystem = {};
 
@@ -6,8 +8,8 @@ CacheSystem.allMovies = async (req, res, next) => {
   try {
     const reply = await redisPool.getAsync("allMovies");
     if (reply) {
-      console.log("Status: allMovies Cached Call");
-      res.send(JSON.parse(reply));
+      print.debug("Cache: allMovies");
+      return res.send(JSON.parse(reply));
     } else next();
   } catch (err) {
     console.log(err);
@@ -17,10 +19,10 @@ CacheSystem.allMovies = async (req, res, next) => {
 
 CacheSystem.movieInfo = async (req, res, next) => {
   try {
-    const reply = await redisPool.getAsync(req.params.id);
+    const reply = await redisPool.getAsync("MOVIE_ID_" + req.params.id);
     if (reply) {
-      console.log("Status: movieInfo Cached Call");
-      res.send(JSON.parse(reply));
+      print.debug("Cache: MOVIE_ID_" + req.params.id);
+      return res.send(JSON.parse(reply));
     } else next();
   } catch (err) {
     console.log(err);
@@ -28,4 +30,16 @@ CacheSystem.movieInfo = async (req, res, next) => {
   }
 };
 
+CacheSystem.netflixOriginals = async (req, res, next) => {
+  try {
+    const reply = await redisPool.getAsync("NetflixOriginals");
+    if (reply) {
+      print.debug("Cache: NetflixOriginals");
+      return res.send(JSON.parse(reply));
+    } else next();
+  } catch (err) {
+    console.log(err);
+    next();
+  }
+};
 module.exports = CacheSystem;
