@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "../controller/axios";
 import requests from "../controller/requests";
+import { Link } from "react-router-dom";
 import "./styles/banner.css";
+
 function Banner() {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState({});
 
   const getRandom = (data) => {
     let out = null;
@@ -16,7 +18,7 @@ function Banner() {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
+      const request = await axios.get(requests.fetchLatest);
       setMovie(getRandom(request.data));
       return request;
     }
@@ -38,11 +40,12 @@ function Banner() {
     >
       <div className="banner__contents">
         <h1 className="banner__title">
-          {" "}
           {movie?.title || movie?.name || movie?.original_name}{" "}
         </h1>
         <div className="banner__buttons">
-          <button className="banner__button">Play</button>
+          <Link to={`/movie/${movie.id}`} className="banner__button">
+            Info
+          </Link>
           <button className="banner__button">My List</button>
           <h1 className="banner__description">
             {truncate(movie?.overview, 150)}

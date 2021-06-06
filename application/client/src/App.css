@@ -1,7 +1,10 @@
 * {
+  border-style: border-box;
   margin: 0;
   padding: 0;
 }
-.app {
+/* .app { */
+/* } */
+.main__row__container {
   background-color: #111;
 }

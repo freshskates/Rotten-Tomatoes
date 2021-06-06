@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "../controller/axios";
 import { Link } from "react-router-dom";
 
-import "./styles/Row.css";
+import "./styles/row.css";
+
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchURL, isLargeRow }) {
