@@ -3,7 +3,10 @@
 }
 .container {
 }
-
+.loading__container {
+  height: 200px;
+  /* width: 100%; */
+}
 .row__posters {
   display: flex;
   /* overflow-y: hidden; */

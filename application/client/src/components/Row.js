@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "../controller/axios";
 import { Link } from "react-router-dom";
-
+import Loading from "./Loading";
 import "./styles/row.css";
 
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchURL, isLargeRow }) {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const renderMovies = (movies) => {
     return movies.map((movie) => {
@@ -38,6 +39,7 @@ function Row({ title, fetchURL, isLargeRow }) {
   useEffect(() => {
     async function fetchData() {
       const requests = await axios.get(fetchURL);
+      setLoading(false);
       setMovies(requests.data.results);
       return requests;
     }
@@ -45,10 +47,19 @@ function Row({ title, fetchURL, isLargeRow }) {
   }, [fetchURL]);
 
   return (
-    <div className="row">
-      <h2 className="row__title">{title}</h2>
-      <div className="row__posters">{renderMovies(movies)}</div>
-    </div>
+    <>
+      {loading && (
+        <div className="loading__container">
+          <Loading />
+        </div>
+      )}
+      {!loading && (
+        <div className="row">
+          <h2 className="row__title">{title}</h2>
+          <div className="row__posters">{renderMovies(movies)}</div>
+        </div>
+      )}
+    </>
   );
 }
 
