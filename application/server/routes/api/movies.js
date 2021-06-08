@@ -6,12 +6,14 @@ const Movies = require("../../Models/Movies");
 const Cache = require("../../helper/Cache");
 const print = require("../../helper/Print");
 const CacheLUT = require("../../middleware/CacheSystem");
+
 router.get("/getLatest/:page(\\d)", CacheLUT.allMovies, async (req, res) => {
   try {
-    let results = await Movies.getLatest(req.params.page);
+    const results = await Movies.getLatest(req.params.page);
     await Cache.set("allMovies", JSON.stringify(results), 30);
     res.send(results);
   } catch (err) {
+    console.err(err);
     res.send({ error: "Error Retrieving Movie Information" });
   }
 });
@@ -21,10 +23,11 @@ router.get(
   CacheLUT.netflixOriginals,
   async (req, res) => {
     try {
-      let results = await Movies.getNetflixOriginals();
+      const results = await Movies.getNetflixOriginals();
       await Cache.set("NetflixOriginals", JSON.stringify(results), 30);
       res.send(results);
     } catch (err) {
+      console.err(err);
       res.send({ error: "Error Retrieving Movie Information" });
     }
   }

@@ -3,7 +3,7 @@ import Row from "./components/Row";
 import Movie from "./components/Movie";
 import Banner from "./components/Banner";
 import requests from "./controller/requests";
-
+//
 import {
   BrowserRouter as Router,
   Switch,
