@@ -10,6 +10,7 @@ const Global = require("./middleware/Route");
 const app = express();
 const cors = require("cors");
 // view engine setup
+// view engine setup
 app.set("views", path.join(__dirname, "views"));
 
 app.use(logger("dev"));
