@@ -6,6 +6,7 @@ const logger = require("morgan");
 const authRouter = require("./routes/api/auth");
 const postsRouter = require("./routes/api/posts");
 const moviesRouter = require("./routes/api/movies");
+const usersRouter = require("./routes/api/users");
 const Global = require("./middleware/Route");
 const app = express();
 const cors = require("cors");
@@ -24,6 +25,7 @@ app.use(Global.printRoute);
 
 app.use("/api/auth", authRouter);
 app.use("/api/movies", moviesRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/posts", postsRouter);
 
 // catch 404 and forward to error handler
