@@ -5,9 +5,9 @@ const Users = {};
 
 Users.create = async (username, password) => {
     try {
-
+        return true;
     } catch {
-
+        return false;
     }
 }
 
